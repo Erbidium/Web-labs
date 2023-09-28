@@ -117,3 +117,7 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/webstorm
 
 Lab1/.idea/
+
+Lab2/.idea/
+
+Lab2/app/.vscode/
