@@ -1,1 +1,57 @@
-<p>task1 works!</p>
+<mat-card>
+  <mat-card-header>
+    Завдання 1
+  </mat-card-header>
+<mat-card-content>
+  <form [formGroup]="task1Form">
+    <div class="form-inputs">
+      <mat-label>Юзернейм</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="username-new" type="text" formControlName="username" placeholder="Username" />
+        <mat-error
+          *ngIf="
+                    task1Form.controls['username'].hasError('required') ||
+                    task1Form.controls['username'].hasError('minlength') ||
+                    task1Form.controls['username'].hasError('maxlength')"
+        >
+          Юзернейм некоректний
+        </mat-error>
+        <mat-error *ngIf="task1Form.controls['username'].hasError('userAlreadyExists')">Користувач з таким юзернеймом вже існує</mat-error>
+      </mat-form-field>
+      <mat-label>Email</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="email-new" type="email" formControlName="email" placeholder="email@email.com" />
+        <mat-error
+          *ngIf="
+                    task1Form.controls['email'].hasError('email') ||
+                    task1Form.controls['email'].hasError('maxlength')">
+          Email некоректний
+        </mat-error>
+        <mat-error *ngIf="task1Form.controls['email'].hasError('required')">Email обов'язковий</mat-error>
+        <mat-error *ngIf="task1Form.controls['email'].hasError('userAlreadyExists')">Користувач з такою поштою вже існує</mat-error>
+      </mat-form-field>
+      <mat-label>Номер телефону</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="phone-new" type="text" formControlName="phone" placeholder="+380000000000" />
+        <mat-error *ngIf="task1Form.controls['phone'].hasError('required')">Телефон обов'язковий</mat-error>
+        <mat-error *ngIf="task1Form.controls['phone'].hasError('pattern')">Телефон некоректний</mat-error>
+      </mat-form-field>
+      <mat-label>Пароль</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="password-new" type="password" formControlName="password" placeholder="●●●●●●●●●●" />
+        <mat-error *ngIf="task1Form.controls['password'].hasError('required')">Пароль обов'язковий</mat-error>
+        <mat-error
+          *ngIf="
+                    task1Form.controls['password'].hasError('pattern') ||
+                    task1Form.controls['password'].hasError('minlength') ||
+                    task1Form.controls['password'].hasError('maxlength')">
+          Пароль некоректний
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-buttons">
+      <button mat-flat-button color="primary" type="button" (click)="onSignIn()">Зареєструватися</button>
+    </div>
+  </form>
+</mat-card-content>
+</mat-card>

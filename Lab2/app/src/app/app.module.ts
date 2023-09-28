@@ -7,6 +7,11 @@ import { Task1Component } from './components/task1/task1.component';
 import { Task2Component } from './components/task2/task2.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatCardModule} from "@angular/material/card";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import {MatTabsModule} from "@angular/material/tabs";
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
