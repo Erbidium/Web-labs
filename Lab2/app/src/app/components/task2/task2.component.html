@@ -1,14 +1,16 @@
-<input type="color" [(ngModel)]="selectedColor">
-<table>
-  <tr *ngFor="let row of rows">
-    <td
-      *ngFor="let cell of row"
-      [style.background-color]="cell.backgroundColor"
-      (mouseover)="handleCellHover(cell.value)"
-      (click)="handleCellClick(cell.value)"
-      (dblclick)="handleCellDoubleClick()"
-    >
-      {{ cell.value }}
-    </td>
-  </tr>
-</table>
+<div class="table-container">
+  <input type="color" [(ngModel)]="selectedColor">
+  <table>
+    <tr *ngFor="let row of rows">
+      <td
+        *ngFor="let cell of row"
+        [style.background-color]="cell.backgroundColor"
+        (mouseover)="handleCellHover(cell.value)"
+        (click)="handleCellClick(cell.value)"
+        (dblclick)="handleCellDoubleClick()"
+      >
+        {{ cell.value }}
+      </td>
+    </tr>
+  </table>
+</div>

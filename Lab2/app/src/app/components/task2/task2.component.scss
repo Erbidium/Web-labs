@@ -1,0 +1,17 @@
+.table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 100vh;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 1.5rem;
+}
+
+td {
+  border: 1px solid #000;
+  padding: 10px;
+}

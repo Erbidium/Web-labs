@@ -40,7 +40,6 @@ export class Task2Component {
 
   handleCellClick(cell: number) {
     if (cell === this.variant) {
-      console.log('test')
       this.rows[0][5].backgroundColor = this.selectedColor;
     }
   }
