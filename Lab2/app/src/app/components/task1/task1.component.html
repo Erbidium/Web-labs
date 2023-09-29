@@ -13,7 +13,7 @@
       </mat-form-field>
       <mat-label>Телефон</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput type="text" formControlName="phone" placeholder="+380000000000" />
+        <input matInput type="text" formControlName="phone" placeholder="(380)-000-00-00" />
         <mat-error *ngIf="task1Form.controls['phone'].hasError('required')">Телефон обов'язковий</mat-error>
         <mat-error *ngIf="task1Form.controls['phone'].hasError('pattern')">Телефон некоректний</mat-error>
       </mat-form-field>
