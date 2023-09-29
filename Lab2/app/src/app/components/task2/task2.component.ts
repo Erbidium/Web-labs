@@ -6,9 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./task2.component.scss']
 })
 export class Task2Component {
-  rows: number[][] = [];
-
-  variantCellColor: string = '';
+  rows: any[] = [];
 
   selectedColor: string = ';'
 
@@ -23,7 +21,12 @@ export class Task2Component {
     for (let i = 0; i < 6; i++) {
       const row = [];
       for (let j = 0; j < 6; j++) {
-        row.push(cellValue++);
+        const cell = {
+          value: cellValue,
+          backgroundColor: 'transparent'
+        };
+        row.push(cell);
+        cellValue++;
       }
       this.rows.push(row);
     }
@@ -31,14 +34,20 @@ export class Task2Component {
 
   handleCellHover(cell: number) {
     if (cell === this.variant) {
-      this.variantCellColor = this.getRandomColor();
+      this.rows[0][5].backgroundColor = this.getRandomColor();
     }
   }
 
   handleCellClick(cell: number) {
-    console.log(this.selectedColor)
     if (cell === this.variant) {
-      this.variantCellColor = this.selectedColor;
+      console.log('test')
+      this.rows[0][5].backgroundColor = this.selectedColor;
+    }
+  }
+
+  handleCellDoubleClick() {
+    for (let i = 0; i < 6; i++) {
+      this.rows[i][5].backgroundColor = this.selectedColor;
     }
   }
 
