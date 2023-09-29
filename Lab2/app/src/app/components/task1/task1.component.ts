@@ -51,7 +51,15 @@ export class Task1Component {
     }
   );
 
-  onSignIn() {
+  onFormClick() {
+    if (this.task1Form.valid) {
+      const pib = this.task1Form.value.pib!;
+      const phone = this.task1Form.value.phone!;
+      const faculty = this.task1Form.value.faculty!;
+      const birthDate = this.task1Form.value.birthDate!;
+      const address = this.task1Form.value.address!;
 
+      alert(`ПІБ: ${pib}\nТелефон: ${phone}\nФакультет: ${faculty}\nДата народження: ${birthDate}\nАдреса: ${address}`);
+    }
   }
 }
