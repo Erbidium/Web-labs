@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { addressRegex, birthDateRegex, facultyRegex, phoneRegex, pibRegex } from "./validation";
 
 @Component({
   selector: 'app-task1',
@@ -9,36 +10,39 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class Task1Component {
   public task1Form = new FormGroup(
     {
-      username: new FormControl(
+      pib: new FormControl(
         '',
         [
           Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(30),
+          Validators.pattern(pibRegex),
         ]
-      ),
-      email: new FormControl(
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          Validators.maxLength(50),
-        ]
-      ),
-      password: new FormControl(
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(30),
-          //Validators.pattern(passwordRegex),
-        ],
       ),
       phone: new FormControl(
         '',
         [
           Validators.required,
-          //Validators.pattern(phoneNumberRegex),
+          Validators.pattern(phoneRegex),
+        ]
+      ),
+      faculty: new FormControl(
+        '',
+        [
+          Validators.required,
+          Validators.pattern(facultyRegex),
+        ],
+      ),
+      birthDate: new FormControl(
+        '',
+        [
+          Validators.required,
+          Validators.pattern(birthDateRegex),
+        ],
+      ),
+      address: new FormControl(
+        '',
+        [
+          Validators.required,
+          Validators.pattern(addressRegex),
         ],
       ),
     },

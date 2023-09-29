@@ -5,48 +5,35 @@
 <mat-card-content>
   <form [formGroup]="task1Form">
     <div class="form-inputs">
-      <mat-label>Юзернейм</mat-label>
+      <mat-label>ПІБ</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="username-new" type="text" formControlName="username" placeholder="Username" />
-        <mat-error
-          *ngIf="
-                    task1Form.controls['username'].hasError('required') ||
-                    task1Form.controls['username'].hasError('minlength') ||
-                    task1Form.controls['username'].hasError('maxlength')"
-        >
-          Юзернейм некоректний
-        </mat-error>
-        <mat-error *ngIf="task1Form.controls['username'].hasError('userAlreadyExists')">Користувач з таким юзернеймом вже існує</mat-error>
+        <input matInput type="text" formControlName="pib" placeholder="ПІБ" />
+        <mat-error *ngIf="task1Form.controls['pib'].hasError('required')">ПІБ обов'язково</mat-error>
+        <mat-error *ngIf="task1Form.controls['pib'].hasError('pattern')">ПІБ некоректне</mat-error>
       </mat-form-field>
-      <mat-label>Email</mat-label>
+      <mat-label>Телефон</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="email-new" type="email" formControlName="email" placeholder="email@email.com" />
-        <mat-error
-          *ngIf="
-                    task1Form.controls['email'].hasError('email') ||
-                    task1Form.controls['email'].hasError('maxlength')">
-          Email некоректний
-        </mat-error>
-        <mat-error *ngIf="task1Form.controls['email'].hasError('required')">Email обов'язковий</mat-error>
-        <mat-error *ngIf="task1Form.controls['email'].hasError('userAlreadyExists')">Користувач з такою поштою вже існує</mat-error>
-      </mat-form-field>
-      <mat-label>Номер телефону</mat-label>
-      <mat-form-field appearance="outline">
-        <input matInput id="phone-new" type="text" formControlName="phone" placeholder="+380000000000" />
+        <input matInput type="text" formControlName="phone" placeholder="+380000000000" />
         <mat-error *ngIf="task1Form.controls['phone'].hasError('required')">Телефон обов'язковий</mat-error>
         <mat-error *ngIf="task1Form.controls['phone'].hasError('pattern')">Телефон некоректний</mat-error>
       </mat-form-field>
-      <mat-label>Пароль</mat-label>
+      <mat-label>Факультет</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="password-new" type="password" formControlName="password" placeholder="●●●●●●●●●●" />
-        <mat-error *ngIf="task1Form.controls['password'].hasError('required')">Пароль обов'язковий</mat-error>
-        <mat-error
-          *ngIf="
-                    task1Form.controls['password'].hasError('pattern') ||
-                    task1Form.controls['password'].hasError('minlength') ||
-                    task1Form.controls['password'].hasError('maxlength')">
-          Пароль некоректний
-        </mat-error>
+        <input matInput type="text" formControlName="faculty" placeholder="Назва" />
+        <mat-error *ngIf="task1Form.controls['faculty'].hasError('required')">Факультет обов'язковий</mat-error>
+        <mat-error *ngIf="task1Form.controls['faculty'].hasError('pattern')">Факультет некоректний</mat-error>
+      </mat-form-field>
+      <mat-label>Дата народження</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" formControlName="birthDate" placeholder="Дата"/>
+        <mat-error *ngIf="task1Form.controls['birthDate'].hasError('required')">Дата народження обов'язкова</mat-error>
+        <mat-error *ngIf="task1Form.controls['birthDate'].hasError('pattern')">Дата народження некоректна</mat-error>
+      </mat-form-field>
+      <mat-label>Адреса</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" formControlName="address"/>
+        <mat-error *ngIf="task1Form.controls['address'].hasError('required')">Адреса обов'язкова</mat-error>
+        <mat-error *ngIf="task1Form.controls['address'].hasError('pattern')">Адреса некоректна</mat-error>
       </mat-form-field>
     </div>
     <div class="form-buttons">
