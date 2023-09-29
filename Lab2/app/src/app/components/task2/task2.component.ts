@@ -8,9 +8,11 @@ import { Component } from '@angular/core';
 export class Task2Component {
   rows: number[][] = [];
 
-  randomColor: string = '';
+  variantCellColor: string = '';
 
-  variant: number = 11;
+  selectedColor: string = ';'
+
+  variant: number = 6;
 
   ngOnInit(): void {
     this.fillTable();
@@ -29,7 +31,14 @@ export class Task2Component {
 
   handleCellHover(cell: number) {
     if (cell === this.variant) {
-      this.randomColor = this.getRandomColor();
+      this.variantCellColor = this.getRandomColor();
+    }
+  }
+
+  handleCellClick(cell: number) {
+    console.log(this.selectedColor)
+    if (cell === this.variant) {
+      this.variantCellColor = this.selectedColor;
     }
   }
 

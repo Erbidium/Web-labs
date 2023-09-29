@@ -1,5 +1,13 @@
+<input type="color" [(ngModel)]="selectedColor">
 <table>
   <tr *ngFor="let row of rows">
-    <td *ngFor="let cell of row" [ngStyle]="{'background-color': cell === variant ? randomColor : ''}" (mouseover)="handleCellHover(cell)">{{ cell }}</td>
+    <td
+      *ngFor="let cell of row"
+      [ngStyle]="{'background-color': cell === variant ? variantCellColor : ''}"
+      (mouseover)="handleCellHover(cell)"
+      (click)="handleCellClick(cell)"
+    >
+      {{ cell }}
+    </td>
   </tr>
 </table>
