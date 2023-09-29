@@ -1,1 +1,5 @@
-<p>task2 works!</p>
+<table>
+  <tr *ngFor="let row of rows">
+    <td *ngFor="let cell of row" [ngStyle]="{'background-color': cell === variant ? randomColor : ''}" (mouseover)="handleCellHover(cell)">{{ cell }}</td>
+  </tr>
+</table>
