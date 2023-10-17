@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {IUser} from "./models/IUser";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'Lab3';
+  private readonly USERS_COUNT = 40;
+
+  users: IUser[] = [];
+
+  async downloadUsers() {
+    let response = await fetch(`https://randomuser.me/api?` + new URLSearchParams({
+      results: this.USERS_COUNT.toString()
+    }));
+    this.users = (await response.json()).results;
+  }
 }
