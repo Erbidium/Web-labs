@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Socket.IO chat</title>
+    <title>Sockets chat</title>
     <style>
         body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
@@ -42,14 +42,16 @@
 </form>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    var socket = io();
+    const socket = io();
 
-    var messages = document.getElementById('messages');
-    var form = document.getElementById('form');
-    var input = document.getElementById('input');
-    var nickname = document.getElementById('nickname');
+    const messages = document.getElementById('messages');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+    const nickname = document.getElementById('nickname');
 
-    var users = document.getElementById('users');
+    const users = document.getElementById('users');
+
+    restoreMessagesFromCache(messages);
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -67,24 +69,62 @@
         }
     });
 
-    socket.on('chat message', function(msg) {
-        var item = document.createElement('li');
-        item.textContent = `${msg.name}: ${msg.message}`;
+    socket.on('chat message', function(message) {
+        const item = createMessageFromUser(message);
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
+
+        saveMessageToCache(message);
     });
 
     socket.on('connection', function () {
-        var item = document.createElement('li');
+        const item = document.createElement('li');
         item.textContent = 'User connected!';
         users.appendChild(item);
     });
 
     socket.on('disconnected', function () {
-        var item = document.createElement('li');
+        const item = document.createElement('li');
         item.textContent = 'User disconnected!';
         users.appendChild(item);
-    })
+    });
+
+    function getCachedMessages()
+    {
+        const cachedMessages = localStorage.getItem("cache");
+        if (cachedMessages == null)
+        {
+            localStorage.setItem("cache", JSON.stringify([]));
+            return [];
+        }
+
+        return JSON.parse(cachedMessages);
+    }
+
+    function saveMessageToCache(message)
+    {
+        const cachedMessages = getCachedMessages();
+        cachedMessages.push(message);
+        localStorage.setItem("cache", JSON.stringify(cachedMessages));
+    }
+
+    function createMessageFromUser(message)
+    {
+        const item = document.createElement('li');
+        item.textContent = `${message.name}: ${message.message}`;
+        return item;
+    }
+
+    function restoreMessagesFromCache(messages)
+    {
+        const cachedMessages = getCachedMessages();
+
+        for (let i = 0; i < cachedMessages.length; i++) {
+            const message = cachedMessages[i];
+            const messageItem = createMessageFromUser(message);
+            messages.appendChild(messageItem);
+        }
+    }
 </script>
 </body>
 </html>
