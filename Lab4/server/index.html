@@ -53,15 +53,23 @@
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        if (input.value) {
+        if (input.value && nickname.value) {
             socket.emit('chat message', { message: input.value, name: nickname.value });
             input.value = '';
+        }
+        else if (!nickname.value)
+        {
+            alert("Enter name");
+        }
+        else if (!input.value)
+        {
+            alert("Enter message");
         }
     });
 
     socket.on('chat message', function(msg) {
         var item = document.createElement('li');
-        item.textContent = `User ${msg.name}: ${msg.message}`;
+        item.textContent = `${msg.name}: ${msg.message}`;
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
     });
