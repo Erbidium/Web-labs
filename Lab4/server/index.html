@@ -64,10 +64,10 @@
 
     function getCachedMessages()
     {
-        const cachedMessages = localStorage.getItem("cache");
+        const cachedMessages = sessionStorage.getItem("cache");
         if (cachedMessages == null)
         {
-            localStorage.setItem("cache", JSON.stringify([]));
+            sessionStorage.setItem("cache", JSON.stringify([]));
             return [];
         }
 
@@ -78,7 +78,7 @@
     {
         const cachedMessages = getCachedMessages();
         cachedMessages.push(message);
-        localStorage.setItem("cache", JSON.stringify(cachedMessages));
+        sessionStorage.setItem("cache", JSON.stringify(cachedMessages));
     }
 
     function createMessageFromUser(message)
