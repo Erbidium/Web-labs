@@ -10,7 +10,7 @@
 <h1>Messages</h1>
 <ul id="messages"></ul>
 <form id="form" action="">
-    <input id="nickname" autocomplete="off" />
+    <input id="nickname" autocomplete="off" oninput="cacheUsername(this)" />
     <input id="input" autocomplete="off" /><button>Send</button>
 </form>
 <script src="/socket.io/socket.io.js"></script>
@@ -25,6 +25,13 @@
     const users = document.getElementById('users');
 
     restoreMessagesFromCache(messages);
+
+    const username = getCachedUsername();
+    if (username) {
+        nickname.value = username;
+    }
+
+    nickname.addEventListener("input", cacheUsername);
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -97,6 +104,15 @@
             const messageItem = createMessageFromUser(message);
             messages.appendChild(messageItem);
         }
+    }
+
+    function cacheUsername(e) {
+        sessionStorage.setItem("username", nickname.value ?? '');
+    }
+
+    function getCachedUsername()
+    {
+        return sessionStorage.getItem("username");
     }
 </script>
 </body>
